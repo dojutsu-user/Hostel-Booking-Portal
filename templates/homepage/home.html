@@ -3,6 +3,7 @@
 {% block title %}Homepage{% endblock %}
 
 {% block content %}
-Book A Room
+    Book A Room<br>
+    {{ user.username }}<br>
     <a href="{% url 'logout' %}">Logout</a>
 {% endblock %}
