@@ -3,5 +3,8 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
+    {% if error_msg %}
+    {{ error_msg }}<br>
+    {% endif %}
 <a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a><br>
 {% endblock %}
