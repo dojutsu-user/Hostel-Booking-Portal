@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'social_django',  # For Google Authorization
     'userAuthentication',
+    'visitor',
+    'hostel',
 ]
 
 MIDDLEWARE = [

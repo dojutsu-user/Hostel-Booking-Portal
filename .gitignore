@@ -101,3 +101,6 @@ ENV/
 .mypy_cache/
 .idea/workspace.xml
 db.sqlite3
+visitor/migrations/0002_auto_20180402_2201.py
+visitor/migrations/0003_auto_20180402_2202.py
+visitor/migrations/__init__.py
