@@ -15,4 +15,12 @@
         {{ form.as_p }}
         <button type="submit">Submit</button>
     </form>
+    Current Requests :<br>
+    {% if current_requests %}
+        {% for r in current_requests %}
+            {{ r.no_of_rooms_required }} -> {{ r.date_of_booking }} -> {{ r.status }}<br>
+        {% endfor %}
+    {% else %}
+        None
+    {% endif %}
 {% endblock %}

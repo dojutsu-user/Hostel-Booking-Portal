@@ -2,13 +2,16 @@ from django.db import models
 from django.conf import settings
 from hostel.models import Hostel
 from hostel.util import generate_choices_of_hostels
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_save
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 class Visitor(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     no_of_rooms_required = models.IntegerField(default=1)
-    date_of_booking = models.DateTimeField(auto_now=True)
+    date_of_booking = models.DateTimeField(null=True, blank=True)
     status = models.BooleanField(default=False, verbose_name='Confirm Booking')
 
     def is_allotted(self):
@@ -40,4 +43,18 @@ def create_booking_info_object(instance, created, *args, **kwargs):
         return temp
 
 
+def update_available_rooms(instance, created, *args, **kwargs):
+    hostel = Hostel.objects.all()
+    if instance.status:
+        booking_info = BookingInfo.objects.filter(visitor=instance)
+        for temp in booking_info:
+            hostel_obj = temp.hostel_allotted
+            x = hostel[int(hostel_obj) - 1]
+            print(x)
+            x.total_available_rooms -= 1
+            x.total_booked_rooms += 1
+            x.save()
+
+
 post_save.connect(create_booking_info_object, sender=Visitor)
+post_save.connect(update_available_rooms, sender=Visitor)
