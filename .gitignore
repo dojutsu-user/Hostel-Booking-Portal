@@ -110,3 +110,7 @@ hostel/migrations/0001_initial.py
 hostel/migrations/__init__.py
 .idea/misc.xml
 .idea/inspectionProfiles/Project_Default.xml
+.idea/workspace.xml___jb_tmp___
+visitor/migrations/0014_auto_20180404_0013.py
+visitor/migrations/0013_auto_20180404_0013.py
+visitor/migrations/0012_auto_20180404_0000.py

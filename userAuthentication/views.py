@@ -2,15 +2,17 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from visitor.forms import BookARoom
 from visitor.util import total_rooms
-from visitor.models import Visitor
+from visitor.models import Visitor, BookingInfo
 from django.utils import timezone
 
 
 @login_required
 def homepage(request):
+    booking_info = BookingInfo.objects.filter(visitor__user=request.user).order_by('-visitor__date_of_booking')
     rooms = total_rooms()
     msg = ''
     current_requests = Visitor.objects.filter(user=request.user).order_by('-date_of_booking')
+    mylist = zip(current_requests, booking_info)
     if request.method == "POST":
         form = BookARoom(request.POST)
         if form.is_valid():
@@ -21,4 +23,5 @@ def homepage(request):
     else:
         form = BookARoom()
     return render(request, 'homepage/home.html',
-                  {'form': form, 'rooms': rooms, 'msg': msg, 'current_requests': current_requests})
+                  {'form': form, 'rooms': rooms, 'msg': msg, 'current_requests': current_requests,
+                   'booking_info': booking_info, 'mylist': mylist})
