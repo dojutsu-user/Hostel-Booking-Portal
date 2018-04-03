@@ -4,13 +4,15 @@ from hostel.models import Hostel
 from hostel.util import generate_choices_of_hostels
 from django.db.models.signals import post_save, pre_delete
 from django.contrib.auth import get_user_model
-
+from django.utils import timezone
 User = get_user_model()
 
 
 class Visitor(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     no_of_rooms_required = models.IntegerField(default=1)
+    from_date = models.DateField(default=timezone.now().date())
+    to_date = models.DateField(default=timezone.now().date())
     date_of_booking = models.DateTimeField(null=True, blank=True)
     status = models.BooleanField(default=False, verbose_name='Confirm Booking')
 
@@ -27,7 +29,7 @@ class Visitor(models.Model):
 class BookingInfo(models.Model):
     hostel_allotted = models.CharField(max_length=10, choices=generate_choices_of_hostels(), default="1")
     room_no = models.CharField(max_length=10, default='0000')
-    visitor = models.OneToOneField(Visitor, on_delete=models.CASCADE, unique=True)
+    visitor = models.ForeignKey(Visitor, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.visitor.user.username
