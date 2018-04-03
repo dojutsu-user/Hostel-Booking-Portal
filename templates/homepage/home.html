@@ -3,7 +3,16 @@
 {% block title %}Homepage{% endblock %}
 
 {% block content %}
+    Total Available Rooms : {{ rooms }}
     Book A Room<br>
     {{ user.username }}<br>
-    <a href="{% url 'logout' %}">Logout</a>
+    <a href="{% url 'logout' %}">Logout<br></a>
+    {% if msg %}
+        {{ msg }}<br>
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
 {% endblock %}

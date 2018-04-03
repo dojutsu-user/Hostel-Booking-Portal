@@ -12,6 +12,6 @@ def generate_choices_of_hostels():
     temp = ()
     i = 1
     for h in Hostel.objects.all():
-        temp += ((i, h.name),)
+        temp += ((str(i), h.name),)
         i += 1
     return temp

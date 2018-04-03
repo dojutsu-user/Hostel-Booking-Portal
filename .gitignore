@@ -104,3 +104,9 @@ db.sqlite3
 visitor/migrations/0002_auto_20180402_2201.py
 visitor/migrations/0003_auto_20180402_2202.py
 visitor/migrations/__init__.py
+hostel/migrations/0001_initial.py
+.idea/workspace.xml
+hostel/migrations/0001_initial.py
+hostel/migrations/__init__.py
+.idea/misc.xml
+.idea/inspectionProfiles/Project_Default.xml
