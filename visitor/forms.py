@@ -44,3 +44,18 @@ class BookingInfoInlineAdminForm(forms.ModelForm):
             if str(h) == str(hostel) and str(r) == str(room):
                 raise forms.ValidationError("Room Already Allotted")
         return self.cleaned_data
+
+
+class VisitorAdminForm(forms.ModelForm):
+    def clean(self):
+        is_arrived = self.cleaned_data.get('is_arrived')
+        status = self.cleaned_data.get('status')
+        is_departed = self.cleaned_data.get('is_departed')
+        if is_arrived and status is False:
+            raise forms.ValidationError("Booking Is Not Confirmed Yet")
+        elif is_departed and status is False:
+            raise forms.ValidationError("Booking Is Not Confirmed Yet")
+        elif is_departed and is_arrived is False:
+            raise forms.ValidationError("Visitor Hasn't Arrived Yet")
+        return self.cleaned_data
+

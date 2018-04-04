@@ -22,6 +22,8 @@ def homepage(request):
             msg = "Request Submitted Successfully"
     else:
         form = BookARoom()
+        for r,b in mylist:
+            print(b.room_no, b.hostel_allotted)
     return render(request, 'homepage/home.html',
                   {'form': form, 'rooms': rooms, 'msg': msg, 'current_requests': current_requests,
                    'booking_info': booking_info, 'mylist': mylist})

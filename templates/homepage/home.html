@@ -17,10 +17,17 @@
     </form>
     Current Requests :<br>
     {% if current_requests %}
-        {% for r,b in mylist %}
-            {{ r.no_of_rooms_required }} -> {{ r.date_of_booking }} -> {{ r.status }} {% if r.status %} -> {{ b.room_no }} -> {{ b.hostel_allotted }}{% endif %}<br>
-        {% endfor %}
-    {% else %}
-        None
+{#        {% for r in current_requests %}#}
+            {#        {{ r.no_of_rooms_required }} -> {{ r.date_of_booking }} -> {{ r.status }}#}
+{#            {% if r.status %}#}
+            {#        {{ i = forloop.counter %}#}
+            {% for b in booking_info %}
+                {{ b.room_no }} -> {{ b.hostel_allotted }}<br>
+            {% endfor %}
+{#            {% endif %}#}
+{#        {% endfor %}#}
+{#    {% else %}#}
+{#        None#}
     {% endif %}
+
 {% endblock %}
