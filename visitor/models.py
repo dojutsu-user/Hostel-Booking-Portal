@@ -16,6 +16,7 @@ class Visitor(models.Model):
     date_of_booking = models.DateTimeField(null=True, blank=True)
     status = models.BooleanField(default=False, verbose_name='Confirm Booking')
 
+
     def is_allotted(self):
         return self.status
 

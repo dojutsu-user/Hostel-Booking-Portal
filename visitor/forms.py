@@ -2,6 +2,7 @@ from django import forms
 from visitor.models import Visitor
 from visitor.util import total_rooms
 from django.utils import timezone
+from .util import get_zip_hostel_room
 
 
 class BookARoom(forms.ModelForm):
@@ -23,6 +24,7 @@ class BookARoom(forms.ModelForm):
         return required_rooms
 
     def clean(self):
+        print(self)
         from_ = self.cleaned_data.get('from_date')
         to_ = self.cleaned_data.get('to_date')
         present = timezone.now().date()
@@ -30,4 +32,15 @@ class BookARoom(forms.ModelForm):
             raise forms.ValidationError("Please Enter Correct Dates")
         elif from_ < present:
             raise forms.ValidationError("Please Enter Correct Dates")
+        return self.cleaned_data
+
+
+class BookingInfoInlineAdminForm(forms.ModelForm):
+    def clean(self):
+        l = get_zip_hostel_room(self.cleaned_data.get('visitor'))
+        room = self.cleaned_data.get('room_no')
+        hostel = self.cleaned_data.get('hostel_allotted')
+        for h, r in l:
+            if str(h) == str(hostel) and str(r) == str(room):
+                raise forms.ValidationError("Room Already Allotted")
         return self.cleaned_data
