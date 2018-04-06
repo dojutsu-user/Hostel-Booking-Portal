@@ -11,6 +11,8 @@ from django.http import HttpResponseRedirect
 
 @login_required
 def homepage(request):
+    if request.user.is_staff:
+        return HttpResponseRedirect(reverse('staff_homepage'))
     booking_info = BookingInfo.objects.filter(visitor__user=request.user)
     current_request = Visitor.objects.filter(user=request.user).first()
     # mylist = zip(current_requests, booking_info)
