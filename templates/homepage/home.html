@@ -3,31 +3,40 @@
 {% block title %}Homepage{% endblock %}
 
 {% block content %}
-    Total Available Rooms : {{ rooms }}
-    Book A Room<br>
-    {{ user.username }}<br>
-    <a href="{% url 'logout' %}">Logout<br></a>
-    {% if msg %}
-        {{ msg }}<br>
-    {% endif %}
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
-    </form>
-    Current Requests :<br>
-    {% if current_requests %}
-{#        {% for r in current_requests %}#}
-            {#        {{ r.no_of_rooms_required }} -> {{ r.date_of_booking }} -> {{ r.status }}#}
-{#            {% if r.status %}#}
-            {#        {{ i = forloop.counter %}#}
-            {% for b in booking_info %}
-                {{ b.room_no }} -> {{ b.hostel_allotted }}<br>
+    Total Available Rooms : {{ rooms }}<br>
+    {% if not current_request %}
+        Book A Room<br>
+        {{ user.username }}<br>
+        <a href="{% url 'logout' %}">Logout<br></a>
+        {% if msg %}
+            {{ msg }}<br>
+        {% endif %}
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+    {% else %}
+        Current Requests :<br>
+        No. Of Rooms Required : {{ current_request.no_of_rooms_required }}<br>
+        From Date : {{ current_request.from_date }}<br>
+        To Date : {{ current_request.to_date }}<br>
+        Room Preference : {{ current_request.room_preference }}<br>
+        Status : {% if current_request.status %}Confirmed{% else %}Not Confirmed Yet{% endif %}<br>
+
+        {% if not current_request.status %}
+            <a href="{% url 'edit' %}">
+                <button>Edit</button>
+            </a>
+        {% else %}
+            <b>Rooms Allotted</b> :<br>
+            {% for temp in booking_info %}
+                Hostel : {{ temp.hostel_allotted }}<br>
+                Room Number : {{ temp.room_no }}<br>
+                Type : {{ temp.room_type }}<br>
+                ==================<br>
             {% endfor %}
-{#            {% endif %}#}
-{#        {% endfor %}#}
-{#    {% else %}#}
-{#        None#}
+        {% endif %}
     {% endif %}
 
 {% endblock %}

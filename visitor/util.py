@@ -21,7 +21,9 @@ def get_zip_hostel_room(visitor):
     booking_info = BookingInfo.objects.filter(~Q(visitor=visitor))
     room = []
     hostel = []
+    type = []
     for obj in booking_info:
         room += [obj.room_no]
         hostel += [obj.hostel_allotted]
-    return zip(hostel, room)
+        type += [obj.room_type]
+    return room, hostel, type
