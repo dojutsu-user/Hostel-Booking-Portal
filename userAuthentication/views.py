@@ -41,6 +41,8 @@ def edit(request):
         visitor = Visitor.objects.get(user=request.user)
     except Visitor.DoesNotExist:
         return HttpResponseRedirect(reverse('homepage'))
+    if visitor.status:
+        HttpResponseRedirect(reverse('homepage'))
     current_request = Visitor.objects.filter(user=request.user)
     print(visitor, current_request, current_request.exists())
     if current_request.exists():

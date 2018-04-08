@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'visitor',
     'hostel',
     'staffUser',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -165,3 +166,5 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_WHITELISTED_DOMAINS = ['iiita.ac.in']
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '309347115245-4kbhrubpa4of3q3en3or2foct8qi59dc.apps.googleusercontent.com'  # Client Key
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '7AeyYcSWtj9U2G50nMdHcoUU'  # Secret Key
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3' # django-crispy-forms

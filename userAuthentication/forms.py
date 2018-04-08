@@ -9,8 +9,20 @@ class EditRequests(forms.ModelForm):
         model = Visitor
         fields = ['no_of_rooms_required', 'from_date', 'to_date', 'room_preference']
         widgets = {
-            'from_date': forms.SelectDateWidget(),
-            'to_date': forms.SelectDateWidget(),
+            'from_date': forms.DateInput(attrs=({
+                'class': 'form-control',
+                'id': 'datepicker',
+            })),
+            'to_date': forms.DateInput(attrs=({
+                'class': 'form-control',
+                'id': 'datepicker1',
+            })),
+            'no_of_rooms_required': forms.NumberInput(attrs=({
+                'class': 'form-control'
+            })),
+            'room_preference': forms.Select(attrs=({
+                'class': 'form-control'
+            })),
         }
 
     def clean_no_of_rooms_required(self):

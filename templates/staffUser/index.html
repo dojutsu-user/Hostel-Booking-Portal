@@ -3,5 +3,33 @@
 {% block title %}Admin Panel | {{ request.user.username }}{% endblock %}
 
 {% block content %}
-Admin Panel
+    <a href="{% url 'logout' %}">Logout</a>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+    <table style="width:100%">
+        <tr>
+            <th>User</th>
+            <th>Number Of Rooms Required</th>
+            <th>Booking Status</th>
+            <th>Date Of Booking</th>
+            <th>From Date</th>
+            <th>To Date</th>
+            <th>Expired</th>
+        </tr>
+        {% for temp in visitor %}
+        <tr>
+            <td><a href="{% url 'user_request_edit_admin' temp.user.pk %}">{{ temp.user.username }}</a></td>
+            <td>{{ temp.no_of_rooms_required }}</td>
+            <td>{% if temp.status %}Confirmed{% else %}Not Confirmed{% endif %}</td>
+            <td>{{ temp.date_of_booking }}</td>
+            <td>{{ temp.from_date }}</td>
+            <td>{{ temp.to_date }}</td>
+            <td>{{ temp.is_departed }}</td>
+        </tr>
+        {% endfor %}
+    </table>
 {% endblock %}

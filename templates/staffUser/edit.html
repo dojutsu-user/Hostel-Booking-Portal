@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit User {{ visitor_obj.user.username }}{% endblock %}
+
+{% block content %}
+    User : {{ visitor_obj.user.username }}<br>
+    Number Of Rooms Required : {{ visitor_obj.no_of_rooms_required }}<br>
+    From Date : {{ visitor_obj.from_date }}<br>
+    To Date : {{ visitor_obj.to_date }}<br>
+    Room Preference : {{ visitor_obj.room_preference }}<br>
+    Date Of Booking : {{ visitor_obj.date_of_booking }}<br>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form1.as_p }}
+        {{ form2.as_p }}
+{#        <input type="checkbox" id="status" name="status_name", value="True">#}
+{#        <label for="status">Confirm Booking</label><br>#}
+{#        <input type="checkbox" id="expired" name="expired_name" value="True">#}
+{#        <label for="expired">Expired</label><br>#}
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}

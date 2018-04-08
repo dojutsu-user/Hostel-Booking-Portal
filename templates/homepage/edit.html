@@ -1,11 +1,138 @@
 {% extends 'base.html' %}
-
+{% load staticfiles %}
 {% block title %}Edit{% endblock %}
-
 {% block content %}
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit</button>
-</form>
-{% endblock %}
+<div class="wrapper">
+    <div class="sidebar" data-color="purple" data-image="{% static 'assets/img/iiita.jpeg' %}">
+
+        <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
+
+
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="http://www.iiita.ac.in" class="simple-text">
+                    {{ request.user.get_full_name }} ({{ request.user.username }})
+                </a>
+            </div>
+
+            <ul class="nav">
+                <li>
+                    <a href="{% url 'homepage' %}">
+                        <i class="pe-7s-home"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'edit' %}">
+                        <i class="pe-7s-credit"></i>
+                        <p>Edit</p>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="https://www.iiita.ac.in/">
+                        <i class="pe-7s-study"></i>
+                        <p>IIIT Allahabad</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-panel">
+        <nav class="navbar navbar-default navbar-fixed">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Dashboard</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="{% url 'logout' %}">
+                                <p>Logout</p>
+                            </a>
+                        </li>
+                        <li class="separator hidden-lg hidden-md"></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="header" style="text-align: center">
+                        <h4 class="title">Edit</h4>
+                        <p class="category">Please Edit The Details In The Form Below</p>
+                    </div>
+                    <div class="content">
+                        <div class="row justify-content-center">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-6">
+                                <form method="POST" class="form-inline form-group form-group-sm">
+                                    {% csrf_token %}
+                                    {{ form.as_p }}
+                                    <button type="submit" class="btn">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {#            </div>#}
+            </div>
+
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <nav class="pull-left">
+                        <ul>
+                            {#                            <li>#}
+                            {#                                <a href="#">#}
+                            {#                                    Home#}
+                            {#                                </a>#}
+                            {#                            </li>#}
+                        </ul>
+                    </nav>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+    {% endblock %}
+    {% block extra_script %}
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                demo.initChartist();
+
+                $.notify({
+                    icon: 'pe-7s-date',
+                    message: "Welcome To Booking Portal"
+
+                }, {
+                    type: 'info',
+                    timer: 4000
+                });
+
+            });
+        </script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+            $(function () {
+                $("#datepicker").datepicker();
+            });
+        </script>
+        <script>
+            $(function () {
+                $("#datepicker1").datepicker();
+            });
+        </script>
+    {% endblock %}
