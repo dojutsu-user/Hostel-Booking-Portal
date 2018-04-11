@@ -31,8 +31,8 @@ def homepage(request):
         # for r, b in mylist:
         #     print(b.room_no, b.hostel_allotted)
     return render(request, 'homepage/home.html',
-                  {'form': form, 'rooms': rooms, 'current_request': current_request,
-                   'booking_info': booking_info})
+                  {'form': form, 'current_request': current_request,
+                   'booking_info': booking_info, 'rooms': rooms})
 
 
 @login_required()

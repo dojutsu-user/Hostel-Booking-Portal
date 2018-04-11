@@ -22,12 +22,16 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
+                {% if current_request %}
+                    {% if  not current_request.status %}
                 <li>
                     <a href="{% url 'edit' %}">
                         <i class="pe-7s-credit"></i>
                         <p>Edit</p>
                     </a>
                 </li>
+                {% endif %}
+                {% endif %}
                 <li class="active">
                     <a href="https://www.iiita.ac.in/">
                         <i class="pe-7s-study"></i>

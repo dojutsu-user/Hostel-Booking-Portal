@@ -59,16 +59,16 @@ def create_booking_info_object(instance, created, *args, **kwargs):
         return temp
 
 
-def update_available_rooms_increase(instance, created, *args, **kwargs):
-    if instance.status and not instance.is_departed:
-        if not instance.is_departed:
-            hostel = Hostel.objects.all()
-            booking_info = BookingInfo.objects.filter(visitor=instance)
-            for info in booking_info:
-                temp = hostel[int(info.hostel_allotted) - 1]
-                temp.total_available_rooms -= 1
-                temp.total_booked_rooms += 1
-                temp.save()
+# def update_available_rooms_increase(instance, created, *args, **kwargs):
+#     if instance.status and not instance.is_departed:
+#         if not instance.is_departed:
+#             hostel = Hostel.objects.all()
+#             booking_info = BookingInfo.objects.filter(visitor=instance)
+#             for info in booking_info:
+#                 temp = hostel[int(info.hostel_allotted) - 1]
+#                 temp.total_available_rooms -= 1
+#                 temp.total_booked_rooms += 1
+#                 temp.save()
 
 
 # def update_available_rooms_after_delete(sender, instance, using, *args, **kwargs):
@@ -94,25 +94,25 @@ def update_available_rooms_increase(instance, created, *args, **kwargs):
 #                 instance.arrived_at = timezone.now()
 
 
-def update_is_departed(sender, instance, *args, **kwargs):
-    try:
-        obj = sender.objects.get(pk=instance.pk)
-    except sender.DoesNotExist:
-        pass
-    else:
-        if not obj.is_departed == instance.is_departed:
-            if instance.is_departed:
-                instance.departed_at = timezone.now()
-                hostel = Hostel.objects.all()
-                booking_info = BookingInfo.objects.filter(visitor=instance)
-                for info in booking_info:
-                    temp = hostel[int(info.hostel_allotted) - 1]
-                    temp.total_available_rooms += 1
-                    temp.total_booked_rooms -= 1
-                    temp.save()
+# def update_is_departed(sender, instance, *args, **kwargs):
+#     try:
+#         obj = sender.objects.get(pk=instance.pk)
+#     except sender.DoesNotExist:
+#         pass
+#     else:
+#         if not obj.is_departed == instance.is_departed:
+#             if instance.is_departed:
+#                 instance.departed_at = timezone.now()
+#                 hostel = Hostel.objects.all()
+#                 booking_info = BookingInfo.objects.filter(visitor=instance)
+#                 for info in booking_info:
+#                     temp = hostel[int(info.hostel_allotted) - 1]
+#                     temp.total_available_rooms += 1
+#                     temp.total_booked_rooms -= 1
+#                     temp.save()
 
 
-post_save.connect(create_booking_info_object, sender=Visitor)
+# post_save.connect(create_booking_info_object, sender=Visitor)
 # post_save.connect(update_available_rooms_increase, sender=Visitor)
 # pre_delete.connect(update_available_rooms_after_delete, sender=Visitor)
 # pre_save.connect(update_is_arrived, sender=Visitor)

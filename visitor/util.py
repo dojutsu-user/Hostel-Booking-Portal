@@ -4,18 +4,20 @@ from django.db.models import Q
 
 
 def total_rooms():
-    room = 0
-    for h in Hostel.objects.all():
-        room += h.available_rooms()
-    return room
-
+    try:
+        room = 0
+        for h in Hostel.objects.all():
+            room += h.available_rooms()
+        return room
+    except:
+        return 0
 
 def list_of_hostels():
-    l = []
-    for h in BookingInfo.objects.all():
-        l += [h.name]
-    return l
-
+    # l = []
+    # for h in BookingInfo.objects.all():
+    #     l += [h.name]
+    # return l
+    return ['VH1', 'VH2', 'VH3']
 
 def get_zip_hostel_room(visitor):
     booking_info = BookingInfo.objects.filter(
