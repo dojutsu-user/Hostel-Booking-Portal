@@ -9,14 +9,31 @@
     To Date : {{ visitor_obj.to_date }}<br>
     Room Preference : {{ visitor_obj.room_preference }}<br>
     Date Of Booking : {{ visitor_obj.date_of_booking }}<br>
-    <form method="POST" enctype="multipart/form-data">
+    {#    <form method="POST">#}
+    {#        {% csrf_token %}#}
+    {#        {{ form.errors }}#}
+    {#        {{ form.as_p }}#}
+    <form method="POST">
         {% csrf_token %}
-        {{ form1.as_p }}
-        {{ form2.as_p }}
-{#        <input type="checkbox" id="status" name="status_name", value="True">#}
-{#        <label for="status">Confirm Booking</label><br>#}
-{#        <input type="checkbox" id="expired" name="expired_name" value="True">#}
-{#        <label for="expired">Expired</label><br>#}
-        <button type="submit">Submit</button>
+        {{ form.management_form }}
+        {#    {{ form.non_field_errors }}#}
+        {#    {{ form.errors }}#}
+        <div style="color:red">{{ form.non_form_errors }}</div>
+        {% for field in form %}
+            {{ field }}<br>
+        {% endfor %}
+        <button type="submit">Save</button>
     </form>
+
+
+    {#        <input type="checkbox" id="status" name="status_name", value="True">#}
+    {#        <label for="status">Confirm Booking</label><br>#}
+    {#        <input type="checkbox" id="expired" name="expired_name" value="True">#}
+    {#        <label for="expired">Expired</label><br>#}
+    {#        <button type="submit">Save</button>#}
+    {#    </form>#}
+    <a href="{% url 'change_status' visitor_obj.id %}">
+        <button type="button">{% if visitor_obj.status %}Cancel Booking{% else %}Confirm Booking{% endif %}</button>
+    </a>
+
 {% endblock %}

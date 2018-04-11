@@ -10,9 +10,9 @@
 
         <div class="sidebar-wrapper">
             <div class="logo">
-                <a href="http://www.iiita.ac.in" class="simple-text">
-                    {{ request.user.get_full_name }} ({{ request.user.username }})
-                </a>
+                <div class="simple-text">
+                    {{ request.user.get_full_name }} ({{ request.user }})
+                </div>
             </div>
 
             <ul class="nav">

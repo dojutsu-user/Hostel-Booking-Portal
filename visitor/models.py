@@ -113,7 +113,7 @@ def update_is_departed(sender, instance, *args, **kwargs):
 
 
 post_save.connect(create_booking_info_object, sender=Visitor)
-post_save.connect(update_available_rooms_increase, sender=Visitor)
+# post_save.connect(update_available_rooms_increase, sender=Visitor)
 # pre_delete.connect(update_available_rooms_after_delete, sender=Visitor)
 # pre_save.connect(update_is_arrived, sender=Visitor)
-pre_save.connect(update_is_departed, sender=Visitor)
+# pre_save.connect(update_is_departed, sender=Visitor)
