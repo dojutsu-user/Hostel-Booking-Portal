@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% block title %}Edit{% endblock %}
 {% block content %}
-<div class="wrapper">
+    <div class="wrapper">
     <div class="sidebar" data-color="purple" data-image="{% static 'assets/img/iiita.jpeg' %}">
 
         <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
@@ -63,8 +63,6 @@
                 </div>
             </div>
         </nav>
-
-
         <div class="content">
             <div class="container-fluid">
                 <div class="card">
@@ -105,34 +103,34 @@
 
         </div>
     </div>
-    {% endblock %}
-    {% block extra_script %}
-        <script type="text/javascript">
-            $(document).ready(function () {
+{% endblock %}
+{% block extra_script %}
+    <script type="text/javascript">
+        $(document).ready(function () {
 
-                demo.initChartist();
+            demo.initChartist();
 
-                $.notify({
-                    icon: 'pe-7s-date',
-                    message: "Welcome To Booking Portal"
+            $.notify({
+                icon: 'pe-7s-date',
+                message: "Welcome To Booking Portal"
 
-                }, {
-                    type: 'info',
-                    timer: 4000
-                });
-
+            }, {
+                type: 'info',
+                timer: 4000
             });
-        </script>
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script>
-            $(function () {
-                $("#datepicker").datepicker();
-            });
-        </script>
-        <script>
-            $(function () {
-                $("#datepicker1").datepicker();
-            });
-        </script>
-    {% endblock %}
+
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#datepicker").datepicker();
+        });
+    </script>
+    <script>
+        $(function () {
+            $("#datepicker1").datepicker();
+        });
+    </script>
+{% endblock %}

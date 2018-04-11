@@ -53,6 +53,7 @@ class BookingInfoInlineAdminForm(forms.ModelForm):
         room_get = self.cleaned_data.get('room_no')
         hostel_get = self.cleaned_data.get('hostel_allotted')
         type_get = self.cleaned_data.get('room_type')
+        print(room_get, hostel_get, type_get)
         # for h, r in l:
         #     if str(h) == str(hostel) and str(r) == str(room):
         #         raise forms.ValidationError("Room Already Allotted")

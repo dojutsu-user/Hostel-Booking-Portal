@@ -6,7 +6,6 @@ from visitor.util import get_zip_hostel_room
 from django.core.exceptions import ValidationError
 import itertools
 
-
 User = get_user_model()
 
 
@@ -14,6 +13,17 @@ class BooingAdminPanelForm(forms.ModelForm):
     class Meta:
         model = BookingInfo
         fields = ['hostel_allotted', 'room_no', 'room_type']
+        widgets = {
+            'hostel_allotted': forms.Select(attrs=({
+                'class': 'form-control',
+            })),
+            'room_no': forms.TextInput(attrs=({
+                'class': 'form-control',
+            })),
+            'room_type': forms.Select(attrs=({
+                'class': 'form-control',
+            })),
+        }
 
 
 class booking_admin_panel_inline_form_base_form_set(BaseInlineFormSet):

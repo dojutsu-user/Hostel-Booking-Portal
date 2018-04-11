@@ -1,39 +1,198 @@
 {% extends 'base.html' %}
-
-{% block title %}Edit User {{ visitor_obj.user.username }}{% endblock %}
-
+{% load staticfiles %}
+{% block title %}Edit{% endblock %}
 {% block content %}
-    User : {{ visitor_obj.user.username }}<br>
-    Number Of Rooms Required : {{ visitor_obj.no_of_rooms_required }}<br>
-    From Date : {{ visitor_obj.from_date }}<br>
-    To Date : {{ visitor_obj.to_date }}<br>
-    Room Preference : {{ visitor_obj.room_preference }}<br>
-    Date Of Booking : {{ visitor_obj.date_of_booking }}<br>
-    {#    <form method="POST">#}
-    {#        {% csrf_token %}#}
-    {#        {{ form.errors }}#}
-    {#        {{ form.as_p }}#}
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.management_form }}
-        {#    {{ form.non_field_errors }}#}
-        {#    {{ form.errors }}#}
-        <div style="color:red">{{ form.non_form_errors }}</div>
-        {% for field in form %}
-            {{ field }}<br>
-        {% endfor %}
-        <button type="submit">Save</button>
-    </form>
+    <div class="wrapper">
+        <div class="sidebar" data-color="azure" data-image="{% static 'assets/img/iiita.jpeg' %}">
+
+            <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
 
 
-    {#        <input type="checkbox" id="status" name="status_name", value="True">#}
-    {#        <label for="status">Confirm Booking</label><br>#}
-    {#        <input type="checkbox" id="expired" name="expired_name" value="True">#}
-    {#        <label for="expired">Expired</label><br>#}
-    {#        <button type="submit">Save</button>#}
-    {#    </form>#}
-    <a href="{% url 'change_status' visitor_obj.id %}">
-        <button type="button">{% if visitor_obj.status %}Cancel Booking{% else %}Confirm Booking{% endif %}</button>
-    </a>
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    <a href="http://www.iiita.ac.in" class="simple-text">
+                        {{ request.user.get_full_name }} ({{ request.user.username }})
+                    </a>
+                </div>
 
+                <ul class="nav">
+                    <li>
+                        <a href="{% url 'homepage' %}">
+                            <i class="pe-7s-home"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="https://www.iiita.ac.in/">
+                            <i class="pe-7s-study"></i>
+                            <p>IIIT Allahabad</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="main-panel">
+            <nav class="navbar navbar-default navbar-fixed">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target="#navigation-example-2">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Dashboard</a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="{% url 'logout' %}">
+                                    <p>Logout</p>
+                                </a>
+                            </li>
+                            <li class="separator hidden-lg hidden-md"></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="card">
+                        <div class="header" style="text-align: center">
+                            <h4 class="title">Edit The Details Of <strong>{{ visitor_obj }}</strong></h4>
+                        </div>
+                        <div class="content">
+                            <div class="row">
+                                {#                            <div class="col-md-3"></div#}
+                                <div class="col-md-12">
+                                    <table class="table table-hover table-striped">
+                                        <tbody>
+                                        <tr>
+                                            <td><strong>Number Of Rooms Required</strong></td>
+                                            <td>{{ visitor_obj.no_of_rooms_required }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>From Date</strong></td>
+                                            <td>{{ visitor_obj.from_date }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>To Date</strong></td>
+                                            <td>{{ visitor_obj.to_date }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Room Preference</strong></td>
+                                            <td>{{ visitor_obj.room_preference }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Status</strong></td>
+                                            {% if visitor_obj.status %}
+                                                <td style="color: green">Confirmed</td>
+                                            {% else %}
+                                                <td style="color:red">Not Confirmed</td>
+                                            {% endif %}
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-md-1"></div>
+                                <div class="col-md-10">
+                                    <div class="container-fluid">
+                                        <h4 align="center">Booking Info</h4>
+                                        {% if error_msg %}#}
+                                            {{ error_msg }}
+                                        {% endif %}
+                                        <form method="POST" class="form-inline form-group form-group-md">
+                                            {% csrf_token %}
+                                            {{ form.management_form }}
+                                            <div align="center">
+                                                <div style="color:red">{{ form.non_form_errors }}</div>
+                                                {% for field in form %}
+                                                    {{ field }}
+                                                    <hr>
+                                                {% endfor %}
+                                                <button type="submit" class="btn btn-primary">Save</button>
+
+                                                <hr>
+                                                <a href="{% url 'change_status' visitor_obj.id %}">
+                                                    {% if visitor_obj.status %}
+                                                        <button type="button" class="btn btn-danger">Cancel Booking
+                                                        </button>
+                                                    {% else %}
+                                                        <button type="button" class="btn btn-success">Confirm Booking
+                                                        </button>
+                                                        </a>
+                                                        {#                                        <button type="button">{% if visitor_obj.status %}Cancel Booking{% else %}Confirm Booking{% endif %}</button>#}
+                                                        {#                                    </a>#}
+                                                    {% endif %}
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer">
+                <div class="container-fluid">
+                    <nav class="pull-left">
+                        <ul>
+                            {#                            <li>#}
+                            {#                                <a href="#">#}
+                            {#                                    Home#}
+                            {#                                </a>#}
+                            {#                            </li>#}
+                        </ul>
+                    </nav>
+                </div>
+            </footer>
+
+        </div>
+    </div>
 {% endblock %}
+
+{#{% extends 'base.html' %}#}
+{##}
+{#{% block title %}Edit User {{ visitor_obj.user.username }}{% endblock %}#}
+{##}
+{#{% block content %}#}
+{#    User : {{ visitor_obj.user.username }}<br>#}
+{#    Number Of Rooms Required : {{ visitor_obj.no_of_rooms_required }}<br>#}
+{#    From Date : {{ visitor_obj.from_date }}<br>#}
+{#    To Date : {{ visitor_obj.to_date }}<br>#}
+{#    Room Preference : {{ visitor_obj.room_preference }}<br>#}
+{#    Date Of Booking : {{ visitor_obj.date_of_booking }}<br>#}
+{#        <form method="POST">#}
+{#            {% csrf_token %}#}
+{#            {{ form.errors }}#}
+{#            {{ form.as_p }}#}
+{#    {% if error_msg %}#}
+{#        {{ error_msg }}#}
+{#    {% endif %}#}
+{##}
+{#    <form method="POST">#}
+{#        {% csrf_token %}#}
+{#        {{ form.management_form }}#}
+{#            {{ form.non_field_errors }}#}
+{#            {{ form.errors }}#}
+{#        <div style="color:red">{{ form.non_form_errors }}</div>#}
+{#        {% for field in form %}#}
+{#            {{ field }}<br>#}
+{#        {% endfor %}#}
+{#        <button type="submit">Save</button>#}
+{#    </form>#}
+{##}
+{##}
+{#            <input type="checkbox" id="status" name="status_name", value="True">#}
+{#            <label for="status">Confirm Booking</label><br>#}
+{#            <input type="checkbox" id="expired" name="expired_name" value="True">#}
+{#            <label for="expired">Expired</label><br>#}
+{#            <button type="submit">Save</button>#}
+{#        </form>#}
+{#    <a href="{% url 'change_status' visitor_obj.id %}">#}
+{#        <button type="button">{% if visitor_obj.status %}Cancel Booking{% else %}Confirm Booking{% endif %}</button>#}
+{#    </a>#}
+{##}
+{#{% endblock %}#}

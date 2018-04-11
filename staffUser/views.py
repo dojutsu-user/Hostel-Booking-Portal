@@ -39,9 +39,11 @@ def change_status(request, id):
     VH1 = Hostel.objects.get(name__icontains='VH1')
     VH2 = Hostel.objects.get(name__icontains='VH2')
     VH3 = Hostel.objects.get(name__icontains='VH3')
+    booking_info = BookingInfo.objects.filter(visitor=visitor_obj)
     if not visitor_obj.status:
-        booking_info = BookingInfo.objects.filter(visitor=visitor_obj)
         for info in booking_info:
+            if info.room_no == '0000' and info.hostel_allotted == '1':
+                raise forms.ValidationError('Please Fill The Form')
             hostel_allotted = info.hostel_allotted
             print(hostel_allotted)
             if hostel_allotted == '1':
@@ -59,7 +61,6 @@ def change_status(request, id):
         visitor_obj.status = True
         visitor_obj.save()
     else:
-        booking_info = BookingInfo.objects.filter(visitor=visitor_obj)
         for info in booking_info:
             hostel_allotted = info.hostel_allotted
             print(hostel_allotted)

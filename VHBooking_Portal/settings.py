@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'visitor',
     'hostel',
     'staffUser',
-    'crispy_forms',
 ]
 
 MIDDLEWARE = [
