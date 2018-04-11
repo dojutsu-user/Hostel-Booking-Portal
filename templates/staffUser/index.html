@@ -94,9 +94,9 @@
                                                 <td>{{ temp.to_date }}</td>
                                                 <td>
                                                     {% if temp.is_departed %}
-                                                        Expired
+                                                        <div style="color:red">Expired</div>
                                                     {% else %}
-                                                        Not Expired
+                                                        <div style="color:green">Not Expired</div>
                                                     {% endif %}
                                                 </td>
                                             </tr>
