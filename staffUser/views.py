@@ -11,13 +11,13 @@ User = get_user_model()
 
 
 def staff_homepage(request):
-    visitor = Visitor.objects.all()
+    visitor = Visitor.objects.all().order_by('-date_of_booking')
     return render(request, 'staffUser/index.html', {'visitor': visitor})
 
 
 def user_request_edit_admin(request, id):
     user = User.objects.get(pk=id)
-    visitor_obj = Visitor.objects.get(user=user)
+    visitor_obj = Visitor.objects.filter(user=user).order_by('-date_of_booking').first()
     BookingAdminPanelInlineFormSet = forms.inlineformset_factory(Visitor, BookingInfo, form=BooingAdminPanelForm,
                                                                  extra=visitor_obj.no_of_rooms_required,
                                                                  max_num=visitor_obj.no_of_rooms_required,
@@ -45,7 +45,6 @@ def change_status(request, id):
             if info.room_no == '0000' and info.hostel_allotted == '1':
                 raise forms.ValidationError('Please Fill The Form')
             hostel_allotted = info.hostel_allotted
-            print(hostel_allotted)
             if hostel_allotted == '1':
                 VH1.total_available_rooms -= 1
                 VH1.total_booked_rooms += 1
@@ -58,9 +57,14 @@ def change_status(request, id):
                 VH3.total_available_rooms -= 1
                 VH3.total_booked_rooms += 1
                 VH3.save()
+        visitor_obj.is_departed = False
         visitor_obj.status = True
         visitor_obj.save()
     else:
+        if visitor_obj.status:
+            if not visitor_obj.is_departed:
+                visitor_obj.is_departed = True
+                visitor_obj.save()
         for info in booking_info:
             hostel_allotted = info.hostel_allotted
             print(hostel_allotted)

@@ -13,8 +13,8 @@ from django.http import HttpResponseRedirect
 def homepage(request):
     if request.user.is_staff:
         return HttpResponseRedirect(reverse('staff_homepage'))
-    booking_info = BookingInfo.objects.filter(visitor__user=request.user)
-    current_request = Visitor.objects.filter(user=request.user).first()
+    booking_info = BookingInfo.objects.filter(visitor__user=request.user).filter(visitor__is_departed=False)
+    current_request = Visitor.objects.filter(user=request.user).filter(is_departed=False).first()
     # mylist = zip(current_requests, booking_info)
     rooms = total_rooms()
     if request.method == "POST":
@@ -38,14 +38,13 @@ def homepage(request):
 @login_required()
 def edit(request):
     try:
-        visitor = Visitor.objects.get(user=request.user)
+        visitor = Visitor.objects.filter(user=request.user).filter(is_departed=False).first()
     except Visitor.DoesNotExist:
         return HttpResponseRedirect(reverse('homepage'))
     if visitor.status:
         HttpResponseRedirect(reverse('homepage'))
-    current_request = Visitor.objects.filter(user=request.user)
-    print(visitor, current_request, current_request.exists())
-    if current_request.exists():
+    current_request = Visitor.objects.filter(user=request.user).filter(is_departed=False).first()
+    if current_request:
         if request.method == 'POST':
             form = EditRequests(request.POST)
             if form.is_valid():

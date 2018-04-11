@@ -29,7 +29,6 @@ class BooingAdminPanelForm(forms.ModelForm):
 class booking_admin_panel_inline_form_base_form_set(BaseInlineFormSet):
     def clean(self):
         cleaned_data = self.cleaned_data
-        print(cleaned_data)
         visitor_ = cleaned_data[0]['visitor']
         booked_rooms, booked_hostel, booked_type = get_zip_hostel_room(visitor_)
         for i in range(len(cleaned_data)):

@@ -73,6 +73,7 @@
                                         <th>Date Of Booking</th>
                                         <th>From Date</th>
                                         <th>To Date</th>
+                                        <th>Expired</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -91,10 +92,18 @@
                                                 <td>{{ temp.date_of_booking }}</td>
                                                 <td>{{ temp.from_date }}</td>
                                                 <td>{{ temp.to_date }}</td>
+                                                <td>
+                                                    {% if temp.is_departed %}
+                                                        Expired
+                                                    {% else %}
+                                                        Not Expired
+                                                    {% endif %}
+                                                </td>
                                             </tr>
                                         {% endfor %}
                                     {% else %}
                                         <tr>
+                                            <td>None</td>
                                             <td>None</td>
                                             <td>None</td>
                                             <td>None</td>
