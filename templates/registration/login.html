@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% block title %}Portal - Login{% endblock %}
 {% block header_files %}
+    <link rel="stylesheet" href="{% static 'login/css/bootstrap-social.css' %}">
     <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="{% static 'login/images/favicon.png' %}"/>
     <!--===============================================================================================-->
@@ -10,11 +11,18 @@
     <link rel="stylesheet" type="text/css"
           href="{% static 'login/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
     <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'login/fonts/iconic/css/material-design-iconic-font.min.css' %}">
+    <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{% static 'login/vendor/animate/animate.css' %}">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{% static 'login/vendor/css-hamburgers/hamburgers.min.css' %}">
     <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'login/vendor/animsition/css/animsition.min.css' %}">
+    <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{% static 'login/vendor/select2/select2.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'login/vendor/daterangepicker/daterangepicker.css' %}">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{% static 'login/css/util.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'login/css/main.css' %}">
@@ -22,91 +30,69 @@
 {% endblock %}
 {% block content %}
     <div class="limiter">
-        <div class="container-login100">
+        <div class="container-login100" style="background-image: url('{% static 'login/images/edited1.jpg' %}');">
             <div class="wrap-login100">
-                <div class="login100-pic">
-                    <img src="{% static 'login/images/iiitalogo.jpg' %}" alt="IIIT Allahabad">
-                </div>
-
                 <form class="login100-form validate-form">
-					<span class="login100-form-title">
-						Welcome To The Online Booking Portal OF IIIT Allahabad
-                        <hr>
-                        Login
-                        {% if error_msg %}
-                            <hr>
-                            <span class="alert alert-danger">
-                                {{ error_msg }}
-                            </span>
-                        {% endif %}
+					<span class="login100-form-title p-b-26">
+						Welcome To The Online Booking Portal Of IIIT Allahabad
 					</span>
-                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                        <input class="input100" type="text" name="email" placeholder="Email">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
-						</span>
-                    </div>
+                    <hr>
+                    <span class="login100-form-title p-b-48">
+{#						<i class="zmdi zmdi-font"></i>#}
+                        <img src="{% static 'login/images/iiitalogo.jpg' %}" alt="logo">
+					</span>
+                    <hr>
 
-                    <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <input class="input100" type="password" name="pass" placeholder="Password">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
-						</span>
-                    </div>
+                    {#                    <div class="wrap-input100 validate-input" data-validate="Valid email is: a@b.c">#}
+                    {#                        <input class="input100" type="text" name="email">#}
+                    {#                        <span class="focus-input100" data-placeholder="Email"></span>#}
+                    {#                    </div>#}
+                    {##}
+                    {#                    <div class="wrap-input100 validate-input" data-validate="Enter password">#}
+                    {#						<span class="btn-show-pass">#}
+                    {#							<i class="zmdi zmdi-eye"></i>#}
+                    {#						</span>#}
+                    {#                        <input class="input100" type="password" name="pass">#}
+                    {#                        <span class="focus-input100" data-placeholder="Password"></span>#}
+                    {#                    </div>#}
 
-                    <div class="container-login100-form-btn">
-                        <button class="login100-form-btn">
-                            Login
-                        </button>
-                    </div>
-                    <div class="container-login100-form-btn">
-                        <a href="{% url 'social:begin' 'google-oauth2' %}">
-                            <img src="{% static 'login/images/sign-in-button.png' %}"
-                                 class="img-rounded img-responsive">
-                        </a>
-                    </div>
-                    <div class="text-center p-t-12">
-						<span class="txt1">
-							Forgot
-						</span>
-                        <a class="txt2" href="#">
-                            Username / Password?
-                        </a>
-                    </div>
-
-                    {#					<div class="text-center p-t-136">#}
-                    {#						<a class="txt2" href="#">#}
-                    {#							Create your Account#}
-                    {#							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>#}
-                    {#						</a>#}
+                    {#					<div class="container-login100-form-btn">#}
+                    {#						<div class="wrap-login100-form-btn">#}
+                    {#							<div class="login100-form-bgbtn"></div>#}
+                    {#							<button class="login100-form-btn">#}
+                    {#								Login#}
+                    {#							</button>#}
+                    {#						</div>#}
                     {#					</div>#}
-                </form>
+                    {#                    <button class="btn btn-lg btn-round btn-block btn-outline-secondary">Sign In</button>#}
+                    {#                </form>#}
+                    {#                <br>#}
+                    <button class="btn btn-block btn-social btn-lg btn-google btn-round btn-lg">
+                        <span class="fa fa-google"></span> Sign in with Google
+                    </button>
             </div>
         </div>
     </div>
 
 
-
+    <div id="dropDownSelect1"></div>
 
     <!--===============================================================================================-->
     <script src="{% static 'login/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+    <!--===============================================================================================-->
+    <script src="{% static 'login/vendor/animsition/js/animsition.min.js' %}"></script>
     <!--===============================================================================================-->
     <script src="{% static 'login/vendor/bootstrap/js/popper.js' %}"></script>
     <script src="{% static 'login/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
     <!--===============================================================================================-->
     <script src="{% static 'login/vendor/select2/select2.min.js' %}"></script>
     <!--===============================================================================================-->
-    <script src="{% static 'login/vendor/tilt/tilt.jquery.min.js' %}"></script>
-    <script>
-        $('.js-tilt').tilt({
-            scale: 1.1
-        })
-    </script>
+    <script src="{% static 'login/vendor/daterangepicker/moment.min.js' %}"></script>
+    <script src="{% static 'login/vendor/daterangepicker/daterangepicker.js' %}"></script>
     <!--===============================================================================================-->
+    <script src="{% static 'login/vendor/countdowntime/countdowntime.js' %}"></script>
+    <!--=============v==================================================================================-->
     <script src="{% static 'login/js/main.js' %}"></script>
-
 {% endblock %}
 {#{% block content %}#}
 {#    {% if error_msg %}#}
