@@ -34,12 +34,14 @@
             <div class="wrap-login100">
                 <form class="login100-form validate-form">
 					<span class="login100-form-title">
-						Welcome To The Online Booking Portal Of IIIT Allahabad
+                        {% if error_msg %}
+                            <div class="alert alert-danger">{{ error_msg }}</div>
+                        {% endif %}
+                        Welcome To The Online Booking Portal Of IIIT Allahabad
 					</span>
                     <hr>
                     <span class="login100-form-title p-b-48">
-{#						<i class="zmdi zmdi-font"></i>#}
-                        <img src="{% static 'login/images/iiitalogo.jpg' %}" alt="logo">
+                        <img src="{% static 'login/images/iiitalogoe.jpg' %}" alt="logo">
 					</span>
                     <hr>
 
@@ -67,14 +69,18 @@
                     {#                    <button class="btn btn-lg btn-round btn-block btn-outline-secondary">Sign In</button>#}
                     {#                </form>#}
                     {#                <br>#}
-                    <button class="btn btn-block btn-social btn-lg btn-google btn-round btn-lg">
-                        <span class="fa fa-google"></span> Sign in with Google
-                    </button>
+                    {#                    <a href="{% url 'social:begin' 'google-oauth2' %}">#}
+                    {#                    <button class="btn btn-block btn-social btn-lg btn-google btn-round btn-lg">#}
+                    {#                        <span class="fa fa-google" style="padding-top: 5px;"></span>#}
+                    {#                        <a href="{% url 'social:begin' 'google-oauth2' %}" style="color:white;"> Sign in#}
+                    {#                            with Google</a>#}
+                    {#                    </button>#}
+                    <a href="{% url 'social:begin' 'google-oauth2' %}"
+                       class="btn btn-block btn-social btn-lg btn-google btn-round btn-lg">
+                        <span class="fa fa-google" style="padding-top: 2px;"></span>Login with Google</a>
             </div>
         </div>
     </div>
-
-
     <div id="dropDownSelect1"></div>
 
     <!--===============================================================================================-->
@@ -95,8 +101,8 @@
     <script src="{% static 'login/js/main.js' %}"></script>
 {% endblock %}
 {#{% block content %}#}
-{#    {% if error_msg %}#}
+{#{% if error_msg %}#}
 {#    {{ error_msg }}<br>#}
-{#    {% endif %}#}
+{#{% endif %}#}
 {#<a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a><br>#}
 {#{% endblock %}#}
