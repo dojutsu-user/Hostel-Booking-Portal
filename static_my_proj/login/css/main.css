@@ -446,7 +446,7 @@ iframe {
 
 @media (max-width: 576px) {
     .wrap-login100 {
-        padding: 77px 15px 33px 15px;
+        padding: 25px 15px 33px 15px;
     }
 }
 
@@ -517,6 +517,10 @@ iframe {
         visibility: visible;
         opacity: 1;
     }
+}
+
+#credits:hover {
+    text-decoration: underline;
 }
 
 
