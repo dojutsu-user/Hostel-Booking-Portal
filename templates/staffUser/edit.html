@@ -4,9 +4,7 @@
 {% block content %}
     <div class="wrapper">
         <div class="sidebar" data-color="azure" data-image="{% static 'assets/img/iiita.jpeg' %}">
-
             <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
-
 
             <div class="sidebar-wrapper">
                 <div class="logo">
@@ -14,7 +12,6 @@
                         {{ request.user.get_full_name }} ({{ request.user.username }})
                     </a>
                 </div>
-
                 <ul class="nav">
                     <li>
                         <a href="{% url 'homepage' %}">
@@ -65,7 +62,6 @@
                         </div>
                         <div class="content">
                             <div class="row">
-                                {#                            <div class="col-md-3"></div#}
                                 <div class="col-md-12">
                                     <table class="table table-hover table-striped">
                                         <tbody>
@@ -123,9 +119,8 @@
                                                         <button type="button" class="btn btn-success">Confirm Booking
                                                         </button>
                                                         </a>
-                                                        {#                                        <button type="button">{% if visitor_obj.status %}Cancel Booking{% else %}Confirm Booking{% endif %}</button>#}
-                                                        {#                                    </a>#}
                                                     {% endif %}
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
@@ -140,7 +135,7 @@
                     <nav class="pull-left">
                         <ul>
                             <li>
-                                <a href="https://www.facebook.com/vaib79">
+                                <a href="https://github.com/dojutsu-user">
                                     Developed By Vaibhav Gupta
                                 </a>
                             </li>
@@ -148,51 +143,6 @@
                     </nav>
                 </div>
             </footer>
-
         </div>
     </div>
 {% endblock %}
-
-{#{% extends 'base.html' %}#}
-{##}
-{#{% block title %}Edit User {{ visitor_obj.user.username }}{% endblock %}#}
-{##}
-{#{% block content %}#}
-{#    User : {{ visitor_obj.user.username }}<br>#}
-{#    Number Of Rooms Required : {{ visitor_obj.no_of_rooms_required }}<br>#}
-{#    From Date : {{ visitor_obj.from_date }}<br>#}
-{#    To Date : {{ visitor_obj.to_date }}<br>#}
-{#    Room Preference : {{ visitor_obj.room_preference }}<br>#}
-{#    Date Of Booking : {{ visitor_obj.date_of_booking }}<br>#}
-{#        <form method="POST">#}
-{#            {% csrf_token %}#}
-{#            {{ form.errors }}#}
-{#            {{ form.as_p }}#}
-{#    {% if error_msg %}#}
-{#        {{ error_msg }}#}
-{#    {% endif %}#}
-{##}
-{#    <form method="POST">#}
-{#        {% csrf_token %}#}
-{#        {{ form.management_form }}#}
-{#            {{ form.non_field_errors }}#}
-{#            {{ form.errors }}#}
-{#        <div style="color:red">{{ form.non_form_errors }}</div>#}
-{#        {% for field in form %}#}
-{#            {{ field }}<br>#}
-{#        {% endfor %}#}
-{#        <button type="submit">Save</button>#}
-{#    </form>#}
-{##}
-{##}
-{#            <input type="checkbox" id="status" name="status_name", value="True">#}
-{#            <label for="status">Confirm Booking</label><br>#}
-{#            <input type="checkbox" id="expired" name="expired_name" value="True">#}
-{#            <label for="expired">Expired</label><br>#}
-{#            <button type="submit">Save</button>#}
-{#        </form>#}
-{#    <a href="{% url 'change_status' visitor_obj.id %}">#}
-{#        <button type="button">{% if visitor_obj.status %}Cancel Booking{% else %}Confirm Booking{% endif %}</button>#}
-{#    </a>#}
-{##}
-{#{% endblock %}#}

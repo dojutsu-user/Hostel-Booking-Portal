@@ -4,9 +4,7 @@
 {% block content %}
     <div class="wrapper">
     <div class="sidebar" data-color="purple" data-image="{% static 'assets/img/iiita.jpeg' %}">
-
         <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
-
 
         <div class="sidebar-wrapper">
             <div class="logo">
@@ -14,7 +12,6 @@
                     {{ request.user.get_full_name }} ({{ request.user.username }})
                 </a>
             </div>
-
             <ul class="nav">
                 <li>
                     <a href="{% url 'homepage' %}">
@@ -83,17 +80,14 @@
                         </div>
                     </div>
                 </div>
-                {#            </div>#}
             </div>
-
 
             <footer class="footer">
                 <div class="container-fluid">
-
                     <nav class="pull-left">
                         <ul>
                             <li>
-                                <a href="https://www.facebook.com/vaib79">
+                                <a href="https://github.com/dojutsu-user">
                                     Developed By Vaibhav Gupta
                                 </a>
                             </li>
@@ -101,30 +95,27 @@
                     </nav>
                 </div>
             </footer>
-
         </div>
-
     </div>
 {% endblock %}
+
 {% block extra_script %}
     <script type="text/javascript">
         $(document).ready(function () {
-
             demo.initChartist();
-
             $.notify({
                 icon: 'pe-7s-date',
                 message: "Welcome To Booking Portal"
-
             }, {
                 type: 'info',
                 timer: 4000
             });
-
         });
     </script>
+
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     <script>
         $(function () {
             $("#datepicker").datepicker();
@@ -135,4 +126,5 @@
             $("#datepicker1").datepicker();
         });
     </script>
+
 {% endblock %}

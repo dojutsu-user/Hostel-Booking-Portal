@@ -5,6 +5,9 @@ from visitor.util import total_rooms
 
 
 class EditRequests(forms.ModelForm):
+    """
+    Form for editing the current request for the user.
+    """
     class Meta:
         model = Visitor
         fields = ['no_of_rooms_required', 'from_date', 'to_date', 'room_preference']
@@ -26,6 +29,9 @@ class EditRequests(forms.ModelForm):
         }
 
     def clean_no_of_rooms_required(self):
+        """
+        to check if the number of room requested are not more than the total number of available rooms.
+        """
         rooms = total_rooms()
         required_rooms = self.cleaned_data.get('no_of_rooms_required')
         if required_rooms > rooms:
@@ -35,6 +41,9 @@ class EditRequests(forms.ModelForm):
         return required_rooms
 
     def clean(self):
+        """
+        To check that the entered dates are valid.
+        """
         from_ = self.cleaned_data.get('from_date')
         to_ = self.cleaned_data.get('to_date')
         present = timezone.now().date()

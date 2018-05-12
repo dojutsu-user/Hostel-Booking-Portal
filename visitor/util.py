@@ -4,6 +4,9 @@ from django.db.models import Q
 
 
 def total_rooms():
+    """
+    return total number of available rooms for booking
+    """
     try:
         room = 0
         for h in Hostel.objects.all():
@@ -12,14 +15,18 @@ def total_rooms():
     except:
         return 0
 
+
 def list_of_hostels():
-    # l = []
-    # for h in BookingInfo.objects.all():
-    #     l += [h.name]
-    # return l
+    """
+    returns the list of hostels.
+    """
     return ['VH1', 'VH2', 'VH3']
 
+
 def get_zip_hostel_room(visitor):
+    """
+    returns the list of allotted room numbers with the corresponding hostel and the type of the room.
+    """
     booking_info = BookingInfo.objects.filter(
         ~Q(visitor=visitor),
         Q(visitor__status=True),

@@ -6,10 +6,14 @@ from visitor.util import get_zip_hostel_room
 from django.core.exceptions import ValidationError
 import itertools
 
+
 User = get_user_model()
 
 
 class BooingAdminPanelForm(forms.ModelForm):
+    """
+    Form for staff users.
+    """
     class Meta:
         model = BookingInfo
         fields = ['hostel_allotted', 'room_no', 'room_type']
@@ -28,6 +32,9 @@ class BooingAdminPanelForm(forms.ModelForm):
 
 class booking_admin_panel_inline_form_base_form_set(BaseInlineFormSet):
     def clean(self):
+        """
+        Function to check that if there is a room already allotted.
+        """
         cleaned_data = self.cleaned_data
         visitor_ = cleaned_data[0]['visitor']
         booked_rooms, booked_hostel, booked_type = get_zip_hostel_room(visitor_)

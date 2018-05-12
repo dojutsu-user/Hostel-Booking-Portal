@@ -34,21 +34,6 @@ class VisitorAdmin(admin.ModelAdmin):
         'user', 'no_of_rooms_required', 'status', 'date_of_booking', 'from_date', 'to_date', 'is_departed')
     inlines = [BookingInfoInline]
     form = VisitorAdminForm
-
-    # def get_readonly_fields(self, request, obj=None):
-    #     if obj:
-    #         temp = (
-    #         'user',
-    #         'no_of_rooms_required',
-    #         'arrived_at',
-    #         'departed_at',
-    #         'from_date',
-    #         'to_date',
-    #         'date_of_booking'
-    #         )
-    #         return temp
-    #     return self.readonly_fields
-
     fields = (
         'user',
         'no_of_rooms_required',
@@ -57,10 +42,7 @@ class VisitorAdmin(admin.ModelAdmin):
         'date_of_booking',
         'room_preference',
         'status',
-        # 'is_arrived',
-        # 'arrived_at',
         'is_departed',
-        # 'departed_at'
     )
 
 

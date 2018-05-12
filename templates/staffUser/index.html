@@ -3,175 +3,134 @@
 {% block title %}Welcome{% endblock %}
 {% block content %}
     <div class="wrapper">
-    <div class="sidebar" data-color="red" data-image="{% static 'assets/img/iiita.jpeg' %}">
-
-        <div class="sidebar-wrapper">
-            <div class="logo">
-                <div class="simple-text">
-                    {{ request.user.get_full_name }} (Admin)
-                </div>
-            </div>
-            <ul class="nav">
-                <li>
-                    <a href="{% url 'homepage' %}">
-                        <i class="pe-7s-home"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
-                <li class="active">
-                    <a href="https://www.iiita.ac.in/">
-                        <i class="pe-7s-study"></i>
-                        <p>IIIT Allahabad</p>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="main-panel">
-        <nav class="navbar navbar-default navbar-fixed">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse"
-                            data-target="#navigation-example-2">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Dashboard</a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="{% url 'logout' %}">
-                                <p>Logout</p>
-                            </a>
-                        </li>
-                        <li class="separator hidden-lg hidden-md"></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <div class="content">
-            <div class="container-fluid">
-                <div class="card">
-                    <div class="header" style="text-align: center">
-                        <h4 class="title">Booking Requests</h4>
+        <div class="sidebar" data-color="red" data-image="{% static 'assets/img/iiita.jpeg' %}">
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    <div class="simple-text">
+                        {{ request.user.get_full_name }} (Admin)
                     </div>
-                    <div class="content">
-                        <div class="row justify-content-center">
-                            {#                            <div class="col-md-3"></div>#}
+                </div>
+                <ul class="nav">
+                    <li>
+                        <a href="{% url 'homepage' %}">
+                            <i class="pe-7s-home"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="https://www.iiita.ac.in/">
+                            <i class="pe-7s-study"></i>
+                            <p>IIIT Allahabad</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main-panel">
+            <nav class="navbar navbar-default navbar-fixed">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target="#navigation-example-2">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Dashboard</a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="{% url 'logout' %}">
+                                    <p>Logout</p>
+                                </a>
+                            </li>
+                            <li class="separator hidden-lg hidden-md"></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
 
-                            <div class="col-md-12">
-                                <table class="table table-hover table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th>User</th>
-                                        <th>Number Of Rooms Required</th>
-                                        <th>Booking Status</th>
-                                        <th>Date Of Booking</th>
-                                        <th>From Date</th>
-                                        <th>To Date</th>
-                                        <th>Expired</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {% if visitor %}
-                                        {% for temp in visitor %}
-                                            <tr>
-                                                <td>
-                                                    <a href="{% url 'user_request_edit_admin' temp.user.pk %}">{{ temp.user.username }}</a>
-                                                </td>
-                                                <td>{{ temp.no_of_rooms_required }}</td>
-                                                {% if temp.status %}
-                                                    <td style="color: green">Confirmed</td>
-                                                {% else %}
-                                                    <td style="color:red">Not Confirmed</td>
-                                                {% endif %}
-                                                <td>{{ temp.date_of_booking }}</td>
-                                                <td>{{ temp.from_date }}</td>
-                                                <td>{{ temp.to_date }}</td>
-                                                <td>
-                                                    {% if temp.is_departed %}
-                                                        <div style="color:red">Expired</div>
-                                                    {% else %}
-                                                        <div style="color:green">Not Expired</div>
-                                                    {% endif %}
-                                                </td>
-                                            </tr>
-                                        {% endfor %}
-                                    {% else %}
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="card">
+                        <div class="header" style="text-align: center">
+                            <h4 class="title">Booking Requests</h4>
+                        </div>
+                        <div class="content">
+                            <div class="row justify-content-center">
+                                <div class="col-md-12">
+                                    <table class="table table-hover table-striped">
+                                        <thead>
                                         <tr>
-                                            <td>None</td>
-                                            <td>None</td>
-                                            <td>None</td>
-                                            <td>None</td>
-                                            <td>None</td>
-                                            <td>None</td>
-                                            <td>None</td>
+                                            <th>User</th>
+                                            <th>Number Of Rooms Required</th>
+                                            <th>Booking Status</th>
+                                            <th>Date Of Booking</th>
+                                            <th>From Date</th>
+                                            <th>To Date</th>
+                                            <th>Expired</th>
                                         </tr>
-                                    {% endif %}
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                        {% if visitor %}
+                                            {% for temp in visitor %}
+                                                <tr>
+                                                    <td>
+                                                        <a href="{% url 'user_request_edit_admin' temp.user.pk %}">{{ temp.user.username }}</a>
+                                                    </td>
+                                                    <td>{{ temp.no_of_rooms_required }}</td>
+                                                    {% if temp.status %}
+                                                        <td style="color: green">Confirmed</td>
+                                                    {% else %}
+                                                        <td style="color:red">Not Confirmed</td>
+                                                    {% endif %}
+                                                    <td>{{ temp.date_of_booking }}</td>
+                                                    <td>{{ temp.from_date }}</td>
+                                                    <td>{{ temp.to_date }}</td>
+                                                    <td>
+                                                        {% if temp.is_departed %}
+                                                            <div style="color:red">Expired</div>
+                                                        {% else %}
+                                                            <div style="color:green">Not Expired</div>
+                                                        {% endif %}
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        {% else %}
+                                            <tr>
+                                                <td>None</td>
+                                                <td>None</td>
+                                                <td>None</td>
+                                                <td>None</td>
+                                                <td>None</td>
+                                                <td>None</td>
+                                                <td>None</td>
+                                            </tr>
+                                        {% endif %}
+                                        </tbody>
+                                    </table>
 
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                {#            </div>#}
+
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <nav class="pull-left">
+                            <ul>
+                                <li>
+                                    <a href="https://github.com/dojutsu-user">
+                                        Developed By Vaibhav Gupta
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </footer>
             </div>
-
-
-            <footer class="footer">
-                <div class="container-fluid">
-                    <nav class="pull-left">
-                        <ul>
-                            <li>
-                                <a href="https://www.facebook.com/vaib79">
-                                    Developed By Vaibhav Gupta
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </footer>
-
         </div>
-    </div>
 {% endblock %}
-
-<!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
-{#{% extends 'base.html' %}#}
-{##}
-{#{% block title %}Admin Panel | {{ request.user.username }}{% endblock %}#}
-{##}
-{#{% block content %}#}
-{#    <a href="{% url 'logout' %}">Logout</a>#}
-{#    <style>#}
-{#        table, th, td {#}
-{#            border: 1px solid black;#}
-{#            border-collapse: collapse;#}
-{#        }#}
-{#    </style>#}
-{#    <table style="width:100%">#}
-{#        <tr>#}
-{#            <th>User</th>#}
-{#            <th>Number Of Rooms Required</th>#}
-{#            <th>Booking Status</th>#}
-{#            <th>Date Of Booking</th>#}
-{#            <th>From Date</th>#}
-{#            <th>To Date</th>#}
-{#        </tr>#}
-{#        {% for temp in visitor %}#}
-{#        <tr>#}
-{#            <td><a href="{% url 'user_request_edit_admin' temp.user.pk %}">{{ temp.user.username }}</a></td>#}
-{#            <td>{{ temp.no_of_rooms_required }}</td>#}
-{#            <td>{% if temp.status %}Confirmed{% else %}Not Confirmed{% endif %}</td>#}
-{#            <td>{{ temp.date_of_booking }}</td>#}
-{#            <td>{{ temp.from_date }}</td>#}
-{#            <td>{{ temp.to_date }}</td>#}
-{#        </tr>#}
-{#        {% endfor %}#}
-{#    </table>#}
-{#{% endblock %}#}

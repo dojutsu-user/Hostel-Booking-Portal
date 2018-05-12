@@ -8,7 +8,7 @@ from django.utils import timezone
 
 User = get_user_model()
 
-ROOM_TYPES = (
+ROOM_TYPES = (              # specifying the types of rooms. Eg. AC, Non-AC
     ('TYPE1', 'TYPE1'),
     ('TYPE2', 'TYPE2'),
     ('TYPE3', 'TYPE3'),
@@ -16,18 +16,17 @@ ROOM_TYPES = (
 
 
 class Visitor(models.Model):
+    """
+    model for visitors.
+    """
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     no_of_rooms_required = models.IntegerField(default=1)
     from_date = models.DateField(default=timezone.now().date())
     to_date = models.DateField(default=timezone.now().date())
     date_of_booking = models.DateTimeField(null=True, blank=True)
     status = models.BooleanField(default=False, verbose_name='Confirm Booking')
-    # is_arrived = models.BooleanField(default=False, verbose_name="Arrived")
-    # arrived_at = models.DateTimeField(null=True, blank=True, )
     is_departed = models.BooleanField(default=False, verbose_name="Departed")
     room_preference = models.CharField(max_length=10, choices=ROOM_TYPES, default='TYPE1')
-
-    # departed_at = models.DateTimeField(null=True, blank=True)
 
     def is_allotted(self):
         return self.status
@@ -40,6 +39,9 @@ class Visitor(models.Model):
 
 
 class BookingInfo(models.Model):
+    """
+    model to specify the booking info for the visitor.
+    """
     hostel_allotted = models.CharField(max_length=10, choices=generate_choices_of_hostels(), default="1")
     room_no = models.CharField(max_length=10, default='0000')
     visitor = models.ForeignKey(Visitor, on_delete=models.CASCADE)

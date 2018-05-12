@@ -7,6 +7,10 @@ import itertools
 
 
 class BookARoom(forms.ModelForm):
+    """
+    form for booking rooms.
+    """
+
     class Meta:
         model = Visitor
         fields = ['no_of_rooms_required', 'from_date', 'to_date', 'room_preference']
@@ -28,6 +32,9 @@ class BookARoom(forms.ModelForm):
         }
 
     def clean_no_of_rooms_required(self):
+        """
+        to check if the number of room requested are not more than the total number of available rooms.
+        """
         rooms = total_rooms()
         required_rooms = self.cleaned_data.get('no_of_rooms_required')
         if required_rooms > rooms:
@@ -37,6 +44,9 @@ class BookARoom(forms.ModelForm):
         return required_rooms
 
     def clean(self):
+        """
+        to check whether entered dates are correct or not.
+        """
         from_ = self.cleaned_data.get('from_date')
         to_ = self.cleaned_data.get('to_date')
         present = timezone.now().date()

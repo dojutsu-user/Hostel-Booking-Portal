@@ -7,15 +7,22 @@ from hostel.models import Hostel
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 
+
 User = get_user_model()
 
 
 def staff_homepage(request):
+    """
+    Homepage for staff users.
+    """
     visitor = Visitor.objects.all().order_by('-date_of_booking')
     return render(request, 'staffUser/index.html', {'visitor': visitor})
 
 
 def user_request_edit_admin(request, id):
+    """
+    Page for editing user requests in the admin panel.
+    """
     user = User.objects.get(pk=id)
     visitor_obj = Visitor.objects.filter(user=user).order_by('-date_of_booking').first()
     BookingAdminPanelInlineFormSet = forms.inlineformset_factory(Visitor, BookingInfo, form=BooingAdminPanelForm,
@@ -35,6 +42,10 @@ def user_request_edit_admin(request, id):
 
 
 def change_status(request, id):
+    """
+    - Update total available rooms in each hostel in database
+    - Change the status of the user to True, i.e. booking confirmed.
+    """
     visitor_obj = Visitor.objects.get(pk=id)
     VH1 = Hostel.objects.get(name__icontains='VH1')
     VH2 = Hostel.objects.get(name__icontains='VH2')
