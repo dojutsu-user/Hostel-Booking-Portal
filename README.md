@@ -71,15 +71,17 @@ A Simple Hostel Booking Portal Based On Django2.0 With Custom Admin Page
 
 ## Screenshots
 
-Homepage : [Homepage](https://ibb.co/c7kXaJ)
+### Homepage : 
+  ![Homepage](https://user-images.githubusercontent.com/29149191/41433985-05b1640c-7038-11e8-83b3-4c9727545ed5.png)
 
-User Panel : 
-  * [Screenshot 1](https://ibb.co/jYLOFJ)
-  * [Screenshot 2](https://ibb.co/mu3zpd)
-  * [Screenshot 3](https://ibb.co/jzBupd)
+### User Panel : 
+  ![UserPanel1](https://user-images.githubusercontent.com/29149191/41434007-1a1b5830-7038-11e8-9c74-22c77e265101.png)
+  ![UserPanel2](https://user-images.githubusercontent.com/29149191/41434030-2c275510-7038-11e8-9a9b-60e9178082a6.png)
+  ![UserPanel3](https://user-images.githubusercontent.com/29149191/41434050-38e88e40-7038-11e8-88bc-1a165206e37b.png)
+
   
-Admin Panel :
-  * [Screenshot 1](https://ibb.co/nuX9pd)
-  * [Screenshot 2](https://ibb.co/bzXg2y)
-  * [Scnreenshot 3](https://ibb.co/d5dkvJ)
+#### Admin Panel :
+  ![AdminPanel1](https://user-images.githubusercontent.com/29149191/41434073-482ae858-7038-11e8-98d2-73400f85d57c.png)
+  ![AdminPanel2](https://user-images.githubusercontent.com/29149191/41434103-54f0f99c-7038-11e8-990f-c8d8ed3c27d3.png)
+  ![AdminPanel3](https://user-images.githubusercontent.com/29149191/41434132-626958c6-7038-11e8-8fd4-622dd2d10042.png)
   
