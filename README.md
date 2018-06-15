@@ -1,10 +1,10 @@
 # HOSTEL BOOKING PORTAL
-A Simple Hostel Booking Portal Based On Django2.0 With Custom Admin Page
+A Simple Hostel Booking Portal Based On Django2.0 With Custom Admin Page.
 
 # INSTRUCTIONS
 
-1. Download the zip file and extract to a new folder.
-2. Open terminal and navigate to the folder which contains `manage.py` file by `cd Hostel-Booking-Portal-master`.
+1. Download the zip file and extract it to a new folder.
+2. Open terminal and navigate to the folder which contains `manage.py` file by running the command `cd Hostel-Booking-Portal-master`.
 3. Create a new virtual environment: `virtualenv venv`.
 4. Activate the virtual environment: `source ./venv/bin/activate`.
 5. Install the dependencies: `pip install -r requirements.txt`.
@@ -16,16 +16,16 @@ A Simple Hostel Booking Portal Based On Django2.0 With Custom Admin Page
 ## Add A Hostel
 
 1. Run the server: `python manage.py runserver`.
-2. Navigate to `http://localhost:8000`.
+2. Navigate to `http://localhost:8000/admin/`.
 3. Login with the username and password for super user.
 4. Under the `HOSTEL` section, click on `Hostels` and then click on `ADD HOSTEL` button on the top right.
-5. Enter the name of the hostel (for eg. VH1) and then fill the other data according to the below table:
+5. Enter the name of the hostel (for eg. VH1) and then fill the other fields according to the below table:
     
       Field | What it represents
       ------------ | -------------
-      Total rooms | Total numbers the hostel have.
-      Total available rooms | Total rooms which are, at present, available for booking.
-      Total booked rooms | Tital rooms which are already booked.
+      Total rooms | Total numbers of rooms the hostel have
+      Total available rooms | Total rooms which are, at present, available for booking
+      Total booked rooms | Total rooms which are already booked
 6. Click on Save.
 7. Open the file `hostel/util.py` and add your hostel under the function `generate_choices_of_hostels` there in the tuple with the corresponding serial number.
 8. Save the file.
@@ -36,7 +36,7 @@ A Simple Hostel Booking Portal Based On Django2.0 With Custom Admin Page
 ## To Allow Only Specific Email Domains To Login
 
 1. Open the file: `userAuthentication/pipeline.py`.
-2. Edit the condition which checks the email in the function `check_email` on `line 8` to allow/disallow different email domains to login.
+2. Edit the conditions which checks the email in the function `check_email` on `line 8` to allow/disallow different email domains to login.
 
 ## Add Room Types
 
@@ -59,11 +59,11 @@ A Simple Hostel Booking Portal Based On Django2.0 With Custom Admin Page
 
 ## Editing The Template
 
-1. All templates files are there in the folder `templates` located at the same folder where `manage.py` files is located, edit those files according to your needs.
+1. All templates files are there in the folder `templates` located at the same level where `manage.py` file is located, edit those files according to your needs.
 
 ## To Make Admin Of The Website
 
-1. Navigate to `http://localhost:8000`.
+1. Navigate to `http://localhost:8000/admin/` and login with super user credentials.
 2. Under `AUTHENTICATION AND AUTHORIZATION` section, click on `Users`.
 3. Select a user with its username.
 4. Under the `Permissions` section, select `Staff status` and then click on Save.
