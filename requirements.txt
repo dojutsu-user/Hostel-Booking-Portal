@@ -1,7 +1,7 @@
 ﻿certifi==2018.1.18
 chardet==3.0.4
 defusedxml==0.5.0
-Django==2.0.4
+Django==2.0.12
 idna==2.6
 oauthlib==2.0.7
 PyJWT==1.6.1
